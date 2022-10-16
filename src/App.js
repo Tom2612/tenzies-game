@@ -28,7 +28,7 @@ function App() {
       key={die.id}
       value={die.value}
       isHeld={die.isHeld}
-      holdDice={() => holdDice(die.id)}
+      // holdDice={() => holdDice(die.id)}
     />
   ))
 

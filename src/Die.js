@@ -1,5 +1,15 @@
-export default function Die() {
+import React from 'react';
+
+export default function Die(props) {
+    const style = {
+        backgroundColor: props.isHeld ? "#59E391" : 'white'
+    }
     return (
-        <h2>Die</h2>
+        <div 
+            className="dice-face"
+            style={style}
+        >
+            <h2 className='die-num'>{props.value}</h2>
+        </div>
     )
 }
