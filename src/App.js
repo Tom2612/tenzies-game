@@ -8,6 +8,7 @@ function App() {
 
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
+  const [rolls, setRolls] = useState(0);
 
   useEffect(() => {
     const allHeld = dice.every(die => die.isHeld);
