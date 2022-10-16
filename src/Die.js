@@ -8,6 +8,7 @@ export default function Die(props) {
         <div 
             className="dice-face"
             style={style}
+            onClick={props.holdDice}
         >
             <h2 className='die-num'>{props.value}</h2>
         </div>
