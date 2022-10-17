@@ -9,6 +9,7 @@ function App() {
   const [dice, setDice] = useState(allNewDice());
   const [tenzies, setTenzies] = useState(false);
   const [rolls, setRolls] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   useEffect(() => {
     const allHeld = dice.every(die => die.isHeld);
@@ -18,6 +19,15 @@ function App() {
       setTenzies(true)
     }
   }, [dice])
+
+  useEffect(() => {
+    if (rolls > 0 && rolls < highScore) {
+      setHighScore(rolls);
+    } else if (rolls > 0 && highScore === 0) {
+      setHighScore(rolls);
+    }
+    console.log('setting')
+  }, [tenzies])
 
   function generateNewDie() {
     return {
@@ -37,6 +47,7 @@ function App() {
 
   function rollDice() {
     if(!tenzies) {
+      setRolls(prev => prev + 1)
       setDice(oldDice => oldDice.map(die => {
         return die.isHeld ? 
         die : generateNewDie()
@@ -44,6 +55,7 @@ function App() {
     } else {
       setTenzies(false);
       setDice(allNewDice());
+      setRolls(0);
     }
   }
 
@@ -81,6 +93,8 @@ function App() {
         >
           {tenzies ? 'New Game' : 'Roll'}
         </button>
+        <div className="score-keeper">Current score: {rolls}</div>
+        <div className="score-keeper">Best score: {highScore}</div>
     </main>
   );
 }
